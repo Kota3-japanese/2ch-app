@@ -16,7 +16,9 @@
         <ul>
             @foreach ($threads as $thread)
                 <li>
-                    {{ $thread->title }}
+                    <a href="/threads/{{ $thread->id }}">
+                        {{ $thread->title }}
+                    </a>
                 </li>
             @endforeach
         </ul>

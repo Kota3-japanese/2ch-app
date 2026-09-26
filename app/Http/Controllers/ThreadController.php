@@ -29,4 +29,11 @@ class ThreadController extends Controller
 
         return redirect('/threads');
     }
+
+    public function show(Thread $thread)
+    {
+        $thread->load('posts');
+
+        return view('threads.show', compact('thread'));
+    }
 }
