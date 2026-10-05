@@ -5,7 +5,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>新しいスレッド</title>
+    <title>スレッド編集</title>
 
     <style>
         body {
@@ -50,11 +50,6 @@
             border-radius: 4px;
         }
 
-        input[type="text"]:focus {
-            outline: none;
-            border-color: #555;
-        }
-
         button {
             margin-top: 20px;
             padding: 10px 18px;
@@ -88,7 +83,7 @@
 
 <div class="container">
 
-    <h1>新しいスレッドを作る</h1>
+    <h1>スレッドを編集する</h1>
 
     @if ($errors->any())
 
@@ -100,9 +95,13 @@
 
     @endif
 
-    <form action="/threads" method="POST">
+    <form
+        action="/threads/{{ $thread->id }}"
+        method="POST"
+    >
 
         @csrf
+        @method('PUT')
 
         <div class="form-group">
 
@@ -116,21 +115,20 @@
                 type="text"
                 id="title"
                 name="title"
-                value="{{ old('title') }}"
-                placeholder="スレッドタイトルを入力してください"
+                value="{{ old('title', $thread->title) }}"
             >
 
         </div>
 
         <button type="submit">
-            スレッドを作成する
+            更新する
         </button>
 
     </form>
 
     <p class="back-link">
-        <a href="/threads">
-            ← スレッド一覧に戻る
+        <a href="/threads/{{ $thread->id }}">
+            ← スレッドに戻る
         </a>
     </p>
 
